@@ -50,7 +50,7 @@ CREATE TABLE IF NOT EXISTS athlete
     date_of_birth   DATE,
     gender          VARCHAR(10),
     join_date       DATE,
-    profile_photo   VARCHAR(255),
+    profile_photo_url   VARCHAR(255),
     team_id         INTEGER REFERENCES team(id)
 );
 

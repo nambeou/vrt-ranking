@@ -26,7 +26,7 @@ public class Athlete {
     @JsonProperty("join_date")
     private LocalDate joinDate;
 
-    @JsonProperty("profile_photo_url")
+    @JsonProperty("profile_photo_url_url")
     private String profilePhotoUrl;
 
     @JsonProperty("team_id")

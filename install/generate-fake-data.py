@@ -77,7 +77,7 @@ def generate_athlete(num=50, teams=[]):
             'date_of_birth': fake.date_of_birth().strftime('%Y-%m-%d'),
             'gender': random.choice(['Male', 'Female']),
             'join_date': fake.date_this_century().strftime('%Y-%m-%d'),
-            'profile_photo':'\'' +  fake.image_url().replace("'", "''") + '\'',
+            'profile_photo_url':'\'' +  fake.image_url().replace("'", "''") + '\'',
             'team_id': random.choice(teams)['id'] if teams else None
         })
     return athletes
