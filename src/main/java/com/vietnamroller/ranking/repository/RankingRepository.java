@@ -1,8 +1,8 @@
 package com.vietnamroller.ranking.repository;
 
-import com.vietnamroller.ranking.dto.RankingDTO;
-import org.springframework.data.r2dbc.repository.R2dbcRepository;
+import com.vietnamroller.ranking.model.Ranking;
+import org.springframework.data.repository.reactive.ReactiveCrudRepository;
 
 
-public interface RankingRepository extends R2dbcRepository<RankingDTO, Long> {
+public interface RankingRepository extends ReactiveCrudRepository<Ranking, Long> {
 }

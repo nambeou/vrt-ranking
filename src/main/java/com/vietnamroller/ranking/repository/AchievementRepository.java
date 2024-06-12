@@ -1,8 +1,8 @@
 package com.vietnamroller.ranking.repository;
 
-import com.vietnamroller.ranking.dto.AchievementDTO;
-import org.springframework.data.r2dbc.repository.R2dbcRepository;
+import com.vietnamroller.ranking.model.Achievement;
+import org.springframework.data.repository.reactive.ReactiveCrudRepository;
 
 
-public interface AchievementRepository extends R2dbcRepository<AchievementDTO, Long> {
+public interface AchievementRepository extends ReactiveCrudRepository<Achievement, Long> {
 }

@@ -1,24 +1,15 @@
 package com.vietnamroller.ranking.controller;
 
-import com.vietnamroller.ranking.dto.ResultDTO;
-import com.vietnamroller.ranking.service.GenericService;
+import com.vietnamroller.ranking.model.Result;
 import com.vietnamroller.ranking.service.ResultService;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
-@RequiredArgsConstructor
+@RestController
 @RequestMapping("/results")
-@Slf4j
-public class ResultController extends GenericController<ResultDTO, Long> {
-    private final ResultService resultService;
+public class ResultController extends GenericReactiveController<Result, Long> {
 
-    @Override
-    protected GenericService<ResultDTO, Long> service() {
-        return this.resultService;
+    public ResultController(ResultService service) {
+        super(service);
     }
-
-
 }

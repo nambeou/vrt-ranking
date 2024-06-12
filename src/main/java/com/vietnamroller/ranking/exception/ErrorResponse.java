@@ -1,4 +1,4 @@
-package com.vietnamroller.ranking.controller.exception;
+package com.vietnamroller.ranking.exception;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

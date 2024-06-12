@@ -1,5 +1,4 @@
-package com.vietnamroller.ranking.dto;
-
+package com.vietnamroller.ranking.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -7,17 +6,13 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.annotation.Transient;
 import org.springframework.data.relational.core.mapping.Table;
-
-import java.time.LocalDate;
-import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table("tournament")
-public class TournamentDTO {
+@Table("category")
+public class Category {
     @Id
     @JsonIgnore
     @JsonProperty("id")
@@ -29,22 +24,15 @@ public class TournamentDTO {
     @JsonProperty("description")
     private String description;
 
-    @JsonIgnore
-    @JsonProperty("category_ids")
-    private List<Long> categoryIds;
+    @JsonProperty("start_age")
+    private Integer startAge;
 
-    @JsonProperty("start_date")
-    private LocalDate startDate;
+    @JsonProperty("end_age")
+    private Integer endAge;
 
-    @JsonProperty("end_date")
-    private LocalDate endDate;
+    @JsonProperty("gender")
+    private String gender;
 
-    @JsonProperty("location")
-    private String location;
-
-    @Transient
-    @JsonProperty("categories")
-    private List<CategoryDTO> categories;
 
     // Getters and Setters
 }

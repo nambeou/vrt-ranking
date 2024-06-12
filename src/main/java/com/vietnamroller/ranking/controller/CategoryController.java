@@ -1,24 +1,15 @@
 package com.vietnamroller.ranking.controller;
 
-import com.vietnamroller.ranking.dto.CategoryDTO;
+import com.vietnamroller.ranking.model.Category;
 import com.vietnamroller.ranking.service.CategoryService;
-import com.vietnamroller.ranking.service.GenericService;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
-@RequiredArgsConstructor
+@RestController
 @RequestMapping("/categories")
-@Slf4j
-public class CategoryController extends GenericController<CategoryDTO, Long> {
-    private final CategoryService categoryService;
+public class CategoryController extends GenericReactiveController<Category, Long> {
 
-    @Override
-    protected GenericService<CategoryDTO, Long> service() {
-        return this.categoryService;
+    public CategoryController(CategoryService service) {
+        super(service);
     }
-
-
 }

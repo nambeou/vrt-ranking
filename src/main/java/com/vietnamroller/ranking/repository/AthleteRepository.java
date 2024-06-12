@@ -1,8 +1,8 @@
 package com.vietnamroller.ranking.repository;
 
-import com.vietnamroller.ranking.dto.AthleteDTO;
-import org.springframework.data.r2dbc.repository.R2dbcRepository;
+import com.vietnamroller.ranking.model.Athlete;
+import org.springframework.data.repository.reactive.ReactiveCrudRepository;
 
 
-public interface AthleteRepository extends R2dbcRepository<AthleteDTO, Long> {
+public interface AthleteRepository extends ReactiveCrudRepository<Athlete, Long> {
 }

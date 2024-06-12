@@ -1,5 +1,4 @@
-package com.vietnamroller.ranking.dto;
-
+package com.vietnamroller.ranking.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -10,11 +9,13 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Transient;
 import org.springframework.data.relational.core.mapping.Table;
 
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table("result")
-public class ResultDTO {
+@Table("overall")
+public class Overall {
     @Id
     @JsonIgnore
     @JsonProperty("id")
@@ -25,28 +26,14 @@ public class ResultDTO {
     private Long categoryId;
 
     @JsonIgnore
-    @JsonProperty("tournament_id")
-    private Long tournamentId;
+    @JsonProperty("athlete_ids")
+    private List<Long> athleteIds;
 
-    @JsonIgnore
-    @JsonProperty("athlete_id")
-    private Long athleteId;
-
-    @JsonProperty("result")
-    private String result;
-
-    @JsonProperty("point")
-    private Integer point;
+    @Transient
+    @JsonProperty("athletes")
+    private List<Athlete> athletes;
 
     @Transient
     @JsonProperty("category")
-    private CategoryDTO category;
-
-    @Transient
-    @JsonProperty("tournament")
-    private TournamentDTO tournament;
-
-    @Transient
-    @JsonProperty("athlete")
-    private AthleteDTO athlete;
+    private Category category;
 }

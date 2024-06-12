@@ -1,9 +1,9 @@
 package com.vietnamroller.ranking.repository;
 
-import com.vietnamroller.ranking.dto.CategoryDTO;
-import org.springframework.data.r2dbc.repository.R2dbcRepository;
+import com.vietnamroller.ranking.model.Category;
+import org.springframework.data.repository.reactive.ReactiveCrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface CategoryRepository extends R2dbcRepository<CategoryDTO, Long> {
+public interface CategoryRepository extends ReactiveCrudRepository<Category, Long> {
 }
