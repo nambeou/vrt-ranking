@@ -27,14 +27,16 @@ Vietnam Roller Team's Ranking system for internal athletes
 
 
 ## tournament
-| **Column**   | **Type**       | **Constraints** |
-|--------------|----------------|------------------|
-| id           | SERIAL         | PRIMARY KEY      |
-| name         | VARCHAR(255)   |                  |
-| description  | TEXT           |                  |
-| start_date   | DATE           |                  |
-| end_date     | DATE           |                  |
-| location     | VARCHAR(255)   |                  |
+| **Column**   | **Type**       | **Constraints**                      |
+|--------------|----------------|--------------------------------------|
+| id           | SERIAL         | PRIMARY KEY                          |
+| name         | VARCHAR(255)   |                                      |
+| description  | TEXT           |                                      |
+| start_date   | DATE           |                                      |
+| end_date     | DATE           |                                      |
+| location     | VARCHAR(255)   |                                      |
+| categories   | INTEGER[]      | REFERENCES category(id)              |
+
 
 
 ## achievement
@@ -47,15 +49,18 @@ Vietnam Roller Team's Ranking system for internal athletes
 
 
 ## athlete
-| **Column**           | **Type**       | **Constraints** |
-|----------------------|----------------|------------------|
-| id                   | SERIAL         | PRIMARY KEY      |
-| name                 | VARCHAR(255)   |                  |
-| date_of_birth        | DATE           |                  |
-| gender               | VARCHAR(10)    |                  |
-| join_date            | DATE           |                  |
-| profile_photo_url    | VARCHAR(255)   |                  |
-| team_id              | INTEGER        | REFERENCES team(id)                      |
+| **Column**          | **Type**       | **Constraints**                      |
+|---------------------|----------------|--------------------------------------|
+| id                  | SERIAL         | PRIMARY KEY                          |
+| name                | VARCHAR(255)   |                                      |
+| date_of_birth       | DATE           |                                      |
+| gender              | VARCHAR(10)    |                                      |
+| join_date           | DATE           |                                      |
+| profile_photo_url   | VARCHAR(255)   |                                      |
+| team_id             | INTEGER        | REFERENCES team(id)                  |
+| rankings            | INTEGER[]      | REFERENCES ranking(id)               |
+| overalls            | INTEGER[]      | REFERENCES overall(id)               |
+
 
 
 ## result
