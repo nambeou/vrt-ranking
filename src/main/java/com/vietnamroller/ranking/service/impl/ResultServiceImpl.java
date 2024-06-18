@@ -5,8 +5,6 @@ import com.vietnamroller.ranking.repository.ResultRepository;
 import com.vietnamroller.ranking.service.GenericReactiveService;
 import com.vietnamroller.ranking.service.ResultService;
 import org.springframework.stereotype.Service;
-import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
 
 @Service
 public class ResultServiceImpl extends GenericReactiveService<Result, Long> implements ResultService {

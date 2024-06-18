@@ -1,6 +1,5 @@
 package com.vietnamroller.ranking.service;
 
-import com.vietnamroller.ranking.service.ReactiveCrudService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.repository.reactive.ReactiveCrudRepository;
 import reactor.core.publisher.Flux;

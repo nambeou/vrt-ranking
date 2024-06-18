@@ -54,6 +54,7 @@ CREATE TABLE IF NOT EXISTS athlete
     team_id         INTEGER REFERENCES team(id)
 );
 
+
 CREATE TABLE IF NOT EXISTS result
 (
     id            SERIAL PRIMARY KEY,
@@ -92,7 +93,8 @@ CREATE TABLE IF NOT EXISTS athlete_achievements
 CREATE TABLE IF NOT EXISTS overall
 (
     id       SERIAL PRIMARY KEY,
-    cat_id   INTEGER REFERENCES category (id)
+    cat_id   INTEGER REFERENCES category (id),
+    point    INTEGER
 );
 
 CREATE TABLE IF NOT EXISTS overall_athletes

@@ -132,7 +132,8 @@ def generate_overall(categories):
     for i, category in enumerate(categories):
         overall.append({
             'id': i + 1,
-            'cat_id': category['id']
+            'cat_id': category['id'],
+            'point': random.randint(1, 1000)
         })
     return overall
 

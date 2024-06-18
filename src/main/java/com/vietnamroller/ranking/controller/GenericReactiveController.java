@@ -1,9 +1,9 @@
 package com.vietnamroller.ranking.controller;
 
 import com.vietnamroller.ranking.service.ReactiveCrudService;
+import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-import org.springframework.web.bind.annotation.*;
 
 public abstract class GenericReactiveController<T, ID> {
 
