@@ -8,7 +8,7 @@ import reactor.core.publisher.Mono;
 @RequiredArgsConstructor
 public abstract class GenericReactiveService<T, ID> implements ReactiveCrudService<T, ID> {
 
-    private final ReactiveCrudRepository<T, ID> repository;
+    protected final ReactiveCrudRepository<T, ID> repository;
 
     @Override
     public Flux<T> getAll() {

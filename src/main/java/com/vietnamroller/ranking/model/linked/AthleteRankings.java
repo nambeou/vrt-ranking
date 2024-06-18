@@ -8,9 +8,6 @@ import org.springframework.data.relational.core.mapping.Table;
 @Data
 @Table("athlete_rankings")
 public class AthleteRankings {
-    @Id
-    @JsonProperty("id")
-    private Long id;
 
     @JsonProperty("athlete_id")
     private Long athleteId;

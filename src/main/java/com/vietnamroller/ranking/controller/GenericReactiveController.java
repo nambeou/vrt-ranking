@@ -7,7 +7,7 @@ import reactor.core.publisher.Mono;
 
 public abstract class GenericReactiveController<T, ID> {
 
-    private final ReactiveCrudService<T, ID> service;
+    protected final ReactiveCrudService<T, ID> service;
 
     protected GenericReactiveController(ReactiveCrudService<T, ID> service) {
         this.service = service;
