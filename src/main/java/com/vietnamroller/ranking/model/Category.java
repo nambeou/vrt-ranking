@@ -9,8 +9,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
+
 @Table("category")
 public class Category {
     @Id
@@ -32,7 +31,4 @@ public class Category {
 
     @JsonProperty("gender")
     private String gender;
-
-
-    // Getters and Setters
 }

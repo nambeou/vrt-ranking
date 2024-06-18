@@ -70,8 +70,8 @@ CREATE TABLE IF NOT EXISTS ranking
     id          SERIAL PRIMARY KEY,
     category_id INTEGER REFERENCES category (id),
     description TEXT,
-    point       INTEGER,
-    best_result INTEGER REFERENCES result (id)
+    rank        INTEGER,
+    best_result_id INTEGER REFERENCES result (id)
 );
 
 

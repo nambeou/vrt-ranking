@@ -12,8 +12,7 @@ import org.springframework.data.relational.core.mapping.Table;
 import java.util.List;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
+
 @Table("overall")
 public class Overall {
     @Id
@@ -25,15 +24,12 @@ public class Overall {
     @JsonProperty("category_id")
     private Long categoryId;
 
-    @JsonIgnore
-    @JsonProperty("athlete_ids")
-    private List<Long> athleteIds;
-
-    @Transient
-    @JsonProperty("athletes")
-    private List<Athlete> athletes;
-
     @Transient
     @JsonProperty("category")
     private Category category;
+
+    @Transient
+    @JsonProperty("rankings")
+    private List<Ranking> rankings;
+
 }

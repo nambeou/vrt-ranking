@@ -14,8 +14,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
+
 @Table("tournament")
 public class Tournament {
     @Id
@@ -28,10 +27,6 @@ public class Tournament {
 
     @JsonProperty("description")
     private String description;
-
-    @JsonIgnore
-    @JsonProperty("category_ids")
-    private List<Long> categoryIds;
 
     @JsonProperty("start_date")
     private LocalDate startDate;
@@ -46,5 +41,4 @@ public class Tournament {
     @JsonProperty("categories")
     private List<Category> categories;
 
-    // Getters and Setters
 }

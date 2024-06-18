@@ -102,8 +102,8 @@ def generate_ranking(categories, results):
             'id': i + 1,
             'cat_id': random.choice(categories)['id'],
             'description': 'Some random description.',
-            'point': random.randint(1, 1000),
-            'best_result': random.choice(results)['id']
+            'rank': random.randint(1, 1000),
+            'best_result_id': random.choice(results)['id']
         })
     return rankings
 

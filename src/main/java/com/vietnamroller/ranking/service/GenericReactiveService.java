@@ -1,5 +1,6 @@
 package com.vietnamroller.ranking.service;
 
+import com.vietnamroller.ranking.model.Achievement;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.repository.reactive.ReactiveCrudRepository;
 import reactor.core.publisher.Flux;
@@ -12,12 +13,12 @@ public abstract class GenericReactiveService<T, ID> implements ReactiveCrudServi
 
     @Override
     public Flux<T> getAll() {
-        return repository.findAll();
+        return repository.findAll().flatMap(this::enrich);
     }
 
     @Override
     public Mono<T> getById(ID id) {
-        return repository.findById(id);
+        return repository.findById(id).flatMap(this::enrich);
     }
 
     @Override
@@ -32,6 +33,11 @@ public abstract class GenericReactiveService<T, ID> implements ReactiveCrudServi
                     updateEntity(existingEntity, entity);
                     return repository.save(existingEntity);
                 });
+    }
+
+
+    protected  Mono<T> enrich(T entity) {
+        return Mono.just(entity);
     }
 
     @Override

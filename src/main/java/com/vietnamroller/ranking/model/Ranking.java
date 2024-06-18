@@ -11,35 +11,30 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 @Table("ranking")
 public class Ranking {
 
     @Id
-    @JsonIgnore
     @JsonProperty("id")
     private Long id;
-
-    @JsonIgnore
-    @JsonProperty("category_id")
-    private Long categoryId;
 
     @JsonProperty("description")
     private String description;
 
-    @JsonProperty("point")
-    private Integer point;
+    @JsonProperty("rank")
+    private Integer rank;
 
-    @JsonIgnore
     @JsonProperty("best_result_id")
     private Long bestResultId;
 
-    @Transient
-    @JsonProperty("category")
-    private Category category;
+    @JsonProperty("category_id")
+    private Long categoryId;
 
     @Transient
     @JsonProperty("best_result")
     private Result bestResult;
+
+    @Transient
+    @JsonProperty("category")
+    private Category category;
 }

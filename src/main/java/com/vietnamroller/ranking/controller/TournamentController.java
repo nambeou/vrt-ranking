@@ -1,7 +1,8 @@
 package com.vietnamroller.ranking.controller;
 
+import com.vietnamroller.ranking.model.Category;
 import com.vietnamroller.ranking.model.Tournament;
-import com.vietnamroller.ranking.model.linked.TournamentCategories;
+import com.vietnamroller.ranking.service.CategoryService;
 import com.vietnamroller.ranking.service.TournamentCategoryService;
 import com.vietnamroller.ranking.service.TournamentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,16 +17,21 @@ import reactor.core.publisher.Flux;
 public class TournamentController extends GenericReactiveController<Tournament, Long> {
 
     private final TournamentCategoryService tournamentCategoryService;
+    private final CategoryService categoryService;
 
     @Autowired
-    public TournamentController(TournamentService service, TournamentCategoryService tournamentCategoryService) {
+    public TournamentController(TournamentService service,
+                                TournamentCategoryService tournamentCategoryService,
+                                CategoryService categoryService) {
         super(service);
         this.tournamentCategoryService = tournamentCategoryService;
+        this.categoryService = categoryService;
     }
 
 
     @GetMapping("/{tournamentId}/categories")
-    public Flux<TournamentCategories> getAllCategoriesByTournamentId(@PathVariable Long tournamentId) {
-        return tournamentCategoryService.findAllCategoriesByTournamentId(tournamentId);
+    public Flux<Category> getAllCategoriesByTournamentId(@PathVariable Long tournamentId) {
+        return tournamentCategoryService.findAllCategoriesByTournamentId(tournamentId)
+                .flatMap(categoryService::getById);
     }
 }
