@@ -5,4 +5,6 @@ import reactor.core.publisher.Flux;
 
 public interface AthleteRankingsService extends ReactiveCrudService<AthleteRankings, Long> {
     Flux<AthleteRankings> findAllRankingsByAthleteId(Long athleteId);
+
+    Flux<AthleteRankings> findAthleteByRankingId(Long rankingId);
 }

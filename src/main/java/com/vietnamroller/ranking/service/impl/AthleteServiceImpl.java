@@ -1,7 +1,6 @@
 package com.vietnamroller.ranking.service.impl;
 
 import com.vietnamroller.ranking.model.Athlete;
-import com.vietnamroller.ranking.model.Team;
 import com.vietnamroller.ranking.repository.AthleteRepository;
 import com.vietnamroller.ranking.service.AthleteService;
 import com.vietnamroller.ranking.service.GenericReactiveService;
@@ -13,6 +12,7 @@ import reactor.core.publisher.Mono;
 public class AthleteServiceImpl extends GenericReactiveService<Athlete, Long> implements AthleteService {
 
     private final TeamService teamService;
+
     public AthleteServiceImpl(AthleteRepository repository, TeamService teamService) {
         super(repository);
         this.teamService = teamService;

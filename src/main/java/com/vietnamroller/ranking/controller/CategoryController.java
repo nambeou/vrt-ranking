@@ -1,9 +1,10 @@
 package com.vietnamroller.ranking.controller;
 
 import com.vietnamroller.ranking.model.Category;
+import com.vietnamroller.ranking.model.Ranking;
 import com.vietnamroller.ranking.model.Tournament;
-import com.vietnamroller.ranking.model.linked.TournamentCategories;
 import com.vietnamroller.ranking.service.CategoryService;
+import com.vietnamroller.ranking.service.RankingService;
 import com.vietnamroller.ranking.service.TournamentCategoryService;
 import com.vietnamroller.ranking.service.TournamentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,14 +20,18 @@ public class CategoryController extends GenericReactiveController<Category, Long
 
     private final TournamentCategoryService tournamentCategoryService;
     private final TournamentService tournamentService;
+    private final RankingService rankingService;
+
 
     @Autowired
     public CategoryController(CategoryService service,
                               TournamentCategoryService tournamentCategoryService,
+                              RankingService rankingService,
                               TournamentService tournamentService) {
         super(service);
         this.tournamentCategoryService = tournamentCategoryService;
         this.tournamentService = tournamentService;
+        this.rankingService = rankingService;
     }
 
     // TournamentCategory endpoints
@@ -35,5 +40,10 @@ public class CategoryController extends GenericReactiveController<Category, Long
     public Flux<Tournament> getAllTournamentsByCategoryId(@PathVariable Long categoryId) {
         return tournamentCategoryService.findAllTournamentsByCategoryId(categoryId)
                 .flatMap(tournamentService::getById);
+    }
+
+    @GetMapping("/{categoryId}/rankings")
+    public Flux<Ranking> getAllRankingsByCategoryId(@PathVariable Long categoryId) {
+        return rankingService.getByCategoryId(categoryId);
     }
 }

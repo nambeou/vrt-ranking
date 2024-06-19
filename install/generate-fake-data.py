@@ -77,7 +77,7 @@ def generate_athlete(num=50, teams=[]):
             'date_of_birth': fake.date_of_birth().strftime('%Y-%m-%d'),
             'gender': random.choice(['Male', 'Female']),
             'join_date': fake.date_this_century().strftime('%Y-%m-%d'),
-            'profile_photo_url':'\'' +  fake.image_url().replace("'", "''") + '\'',
+            'profile_photo_url': '\'' + fake.image_url().replace("'", "''") + '\'',
             'team_id': random.choice(teams)['id'] if teams else None
         })
     return athletes
@@ -87,9 +87,7 @@ def generate_result(categories, tournaments, athletes):
     for i in range(50):
         results.append({
             'id': i + 1,
-            'cat_id': random.choice(categories)['id'],
-            'tournament_id': random.choice(tournaments)['id'],
-            'athlete_id': random.choice(athletes)['id'],
+            'category_id': random.choice(categories)['id'],
             'result': 'Some random description.',
             'point': random.randint(1, 100)
         })
@@ -100,7 +98,7 @@ def generate_ranking(categories, results):
     for i in range(20):
         rankings.append({
             'id': i + 1,
-            'cat_id': random.choice(categories)['id'],
+            'category_id': random.choice(categories)['id'],
             'description': 'Some random description.',
             'rank': random.randint(1, 1000),
             'best_result_id': random.choice(results)['id']
@@ -132,7 +130,7 @@ def generate_overall(categories):
     for i, category in enumerate(categories):
         overall.append({
             'id': i + 1,
-            'cat_id': category['id'],
+            'category_id': category['id'],
             'point': random.randint(1, 1000)
         })
     return overall
@@ -147,20 +145,41 @@ def generate_overall_athletes(overall, athletes):
             })
     return overall_athletes
 
+def generate_tournament_results(tournaments, results):
+    tournament_results = []
+    for tournament in tournaments:
+        for result in random.sample(results, random.randint(1, len(results))):
+            tournament_results.append({
+                'tournament_id': tournament['id'],
+                'result_id': result['id']
+            })
+    return tournament_results
+
+def generate_athlete_results(athletes, results):
+    athlete_results = []
+    for athlete in athletes:
+        for result in random.sample(results, random.randint(1, len(results))):
+            athlete_results.append({
+                'athlete_id': athlete['id'],
+                'result_id': result['id']
+            })
+    return athlete_results
+
 # Generate data
 categories = generate_category()
 teams = generate_team()
 tournaments = generate_tournament()
 athletes = generate_athlete(teams=teams)
-
+results = generate_result(categories, tournaments, athletes)
 tournament_categories = generate_tournament_categories(tournaments, categories)
 achievements = generate_achievement(tournaments, categories)
-results = generate_result(categories, tournaments, athletes)
 rankings = generate_ranking(categories, results)
 athlete_rankings = generate_athlete_rankings(athletes, rankings)
 athlete_achievements = generate_athlete_achievements(athletes, achievements)
 overall = generate_overall(categories)
 overall_athletes = generate_overall_athletes(overall, athletes)
+tournament_results = generate_tournament_results(tournaments, results)
+athlete_results = generate_athlete_results(athletes, results)
 
 def print_insert_statements(table, data):
     for row in data:
@@ -172,11 +191,13 @@ print_insert_statements('category', categories)
 print_insert_statements('team', teams)
 print_insert_statements('tournament', tournaments)
 print_insert_statements('athlete', athletes)
+print_insert_statements('result', results)
 print_insert_statements('tournament_categories', tournament_categories)
 print_insert_statements('achievement', achievements)
-print_insert_statements('result', results)
 print_insert_statements('ranking', rankings)
 print_insert_statements('athlete_rankings', athlete_rankings)
 print_insert_statements('athlete_achievements', athlete_achievements)
 print_insert_statements('overall', overall)
 print_insert_statements('overall_athletes', overall_athletes)
+print_insert_statements('tournament_results', tournament_results)
+print_insert_statements('athlete_results', athlete_results)

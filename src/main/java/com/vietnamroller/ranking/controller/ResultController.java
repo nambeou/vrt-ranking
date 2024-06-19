@@ -31,4 +31,9 @@ public class ResultController extends GenericReactiveController<Result, Long> {
     public Flux<Result> getAllResultsByTournamentId(@PathVariable Long tournamentId) {
         return resultService.findAllResultsByTournamentId(tournamentId);
     }
+
+    @GetMapping("/tournament/{tournamentId}/category/{categoryId}")
+    public Flux<Result> getAllResultsByTournamentIdAndCategoryId(@PathVariable Long tournamentId, @PathVariable Long categoryId) {
+        return resultService.findAllResultsByTournamentIdAndCategoryId(tournamentId, categoryId);
+    }
 }

@@ -1,7 +1,6 @@
 package com.vietnamroller.ranking.service.impl;
 
 import com.vietnamroller.ranking.model.Tournament;
-import com.vietnamroller.ranking.model.linked.TournamentCategories;
 import com.vietnamroller.ranking.repository.TournamentRepository;
 import com.vietnamroller.ranking.service.CategoryService;
 import com.vietnamroller.ranking.service.GenericReactiveService;
@@ -16,6 +15,7 @@ public class TournamentServiceImpl extends GenericReactiveService<Tournament, Lo
 
     private final TournamentCategoryService tournamentCategoryService;
     private final CategoryService categoryService;
+
     public TournamentServiceImpl(TournamentRepository repository,
                                  TournamentCategoryService tournamentCategoryService,
                                  CategoryService categoryService) {
@@ -52,4 +52,5 @@ public class TournamentServiceImpl extends GenericReactiveService<Tournament, Lo
                 });
 
     }
+
 }

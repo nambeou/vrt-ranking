@@ -14,6 +14,7 @@ public class OverallServiceImpl extends GenericReactiveService<Overall, Long> im
 
     private final CategoryService categoryService;
     private final RankingService rankingService;
+
     public OverallServiceImpl(OverAllRepository repository, CategoryService categoryService, RankingService rankingService) {
         super(repository);
         this.categoryService = categoryService;

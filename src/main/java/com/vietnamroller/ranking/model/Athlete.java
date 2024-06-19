@@ -1,5 +1,6 @@
 package com.vietnamroller.ranking.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
@@ -31,6 +32,7 @@ public class Athlete {
     private String profilePhotoUrl;
 
     @JsonProperty("team_id")
+    @JsonIgnore
     private Long teamId;
 
     @Transient

@@ -7,7 +7,6 @@ import com.vietnamroller.ranking.service.CategoryService;
 import com.vietnamroller.ranking.service.GenericReactiveService;
 import com.vietnamroller.ranking.service.TournamentService;
 import org.springframework.stereotype.Service;
-import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @Service
@@ -15,6 +14,7 @@ public class AchievementServiceImpl extends GenericReactiveService<Achievement, 
 
     private final CategoryService categoryService;
     private final TournamentService tournamentService;
+
     public AchievementServiceImpl(AchievementRepository repository, CategoryService categoryService, TournamentService tournamentService) {
         super(repository);
         this.categoryService = categoryService;

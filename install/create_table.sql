@@ -8,6 +8,14 @@ CREATE TABLE IF NOT EXISTS category
     end_age     INTEGER
 );
 
+CREATE TABLE IF NOT EXISTS result
+(
+    id            SERIAL PRIMARY KEY,
+    category_id   INTEGER REFERENCES category (id),
+    result        TEXT,
+    point         INTEGER
+);
+
 CREATE TABLE IF NOT EXISTS team
 (
     id              SERIAL PRIMARY KEY,
@@ -35,6 +43,13 @@ CREATE TABLE IF NOT EXISTS tournament_categories
     PRIMARY KEY (tournament_id, category_id)
 );
 
+CREATE TABLE IF NOT EXISTS tournament_results
+(
+    tournament_id INTEGER REFERENCES tournament(id),
+    result_id   INTEGER REFERENCES result(id),
+    PRIMARY KEY (tournament_id, result_id)
+);
+
 CREATE TABLE IF NOT EXISTS achievement
 (
     id            SERIAL PRIMARY KEY,
@@ -54,17 +69,6 @@ CREATE TABLE IF NOT EXISTS athlete
     team_id         INTEGER REFERENCES team(id)
 );
 
-
-CREATE TABLE IF NOT EXISTS result
-(
-    id            SERIAL PRIMARY KEY,
-    category_id   INTEGER REFERENCES category (id),
-    tournament_id INTEGER REFERENCES tournament (id),
-    athlete_id    INTEGER REFERENCES athlete (id),
-    result        TEXT,
-    point         INTEGER
-);
-
 CREATE TABLE IF NOT EXISTS ranking
 (
     id          SERIAL PRIMARY KEY,
@@ -74,13 +78,18 @@ CREATE TABLE IF NOT EXISTS ranking
     best_result_id INTEGER REFERENCES result (id)
 );
 
-
-
 CREATE TABLE IF NOT EXISTS athlete_rankings
 (
     athlete_id INTEGER REFERENCES athlete(id),
     ranking_id INTEGER REFERENCES ranking(id),
     PRIMARY KEY (athlete_id, ranking_id)
+);
+
+CREATE TABLE IF NOT EXISTS athlete_results
+(
+    athlete_id INTEGER REFERENCES athlete(id),
+    result_id INTEGER REFERENCES result(id),
+    PRIMARY KEY (athlete_id, result_id)
 );
 
 CREATE TABLE IF NOT EXISTS athlete_achievements

@@ -5,12 +5,12 @@ import lombok.Data;
 import org.springframework.data.relational.core.mapping.Table;
 
 @Data
-@Table("overall_athletes")
-public class OverallAthletes {
-
-    @JsonProperty("overall_id")
-    private Long overallId;
+@Table("athlete_achievements")
+public class AthleteResults {
 
     @JsonProperty("athlete_id")
     private Long athleteId;
+
+    @JsonProperty("result_id")
+    private Long resultId;
 }

@@ -7,4 +7,6 @@ import reactor.core.publisher.Flux;
 public interface AthleteRankingsRepository extends ReactiveCrudRepository<AthleteRankings, Long> {
 
     Flux<AthleteRankings> findAllByAthleteId(Long athleteId);
+
+    Flux<AthleteRankings> findAllByRankingId(Long rankingId);
 }

@@ -2,7 +2,6 @@ package com.vietnamroller.ranking.service.impl;
 
 import com.vietnamroller.ranking.model.Ranking;
 import com.vietnamroller.ranking.repository.RankingRepository;
-import com.vietnamroller.ranking.service.CategoryService;
 import com.vietnamroller.ranking.service.GenericReactiveService;
 import com.vietnamroller.ranking.service.RankingService;
 import com.vietnamroller.ranking.service.ResultService;
@@ -36,12 +35,15 @@ public class RankingServiceImpl extends GenericReactiveService<Ranking, Long> im
                 .map(result -> {
                     entity.setBestResult(result);
                     entity.setCategory(result.getCategory());
-                return entity;});
+                    return entity;
+                });
     }
 
     @Override
     public Flux<Ranking> getByCategoryId(Long categoryId) {
-        return rankingRepository.findByCategoryId(categoryId).flatMap(this::enrich);
+        return rankingRepository
+                .findAllByCategoryId(categoryId)
+                .flatMap(this::enrich);
     }
 
 }

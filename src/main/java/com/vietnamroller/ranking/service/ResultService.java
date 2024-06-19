@@ -8,4 +8,7 @@ public interface ResultService extends ReactiveCrudService<Result, Long> {
     Flux<Result> findAllResultsByAthleteId(Long athleteId);
 
     Flux<Result> findAllResultsByTournamentId(Long tournamentId);
+
+    Flux<Result> findAllResultsByTournamentIdAndCategoryId(Long tournamentId, Long categoryId);
+
 }

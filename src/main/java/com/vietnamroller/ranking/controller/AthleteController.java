@@ -1,13 +1,12 @@
 package com.vietnamroller.ranking.controller;
 
+import com.vietnamroller.ranking.model.Achievement;
 import com.vietnamroller.ranking.model.Athlete;
+import com.vietnamroller.ranking.model.Ranking;
 import com.vietnamroller.ranking.model.linked.AthleteAchievements;
 import com.vietnamroller.ranking.model.linked.AthleteRankings;
 import com.vietnamroller.ranking.model.linked.OverallAthletes;
-import com.vietnamroller.ranking.service.AthleteAchievementsService;
-import com.vietnamroller.ranking.service.AthleteRankingsService;
-import com.vietnamroller.ranking.service.AthleteService;
-import com.vietnamroller.ranking.service.OverallAthletesService;
+import com.vietnamroller.ranking.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,6 +21,8 @@ public class AthleteController extends GenericReactiveController<Athlete, Long> 
 
     private final OverallAthletesService overallAthletesService;
     private final AthleteRankingsService athleteRankingsService;
+    private final RankingService rankingService;
+    private final AchievementService achievementService;
     private final AthleteAchievementsService athleteAchievementsService;
 
     @Autowired
@@ -29,22 +30,34 @@ public class AthleteController extends GenericReactiveController<Athlete, Long> 
     public AthleteController(AthleteService service,
                              OverallAthletesService overallAthletesService,
                              AthleteRankingsService athleteRankingsService,
+                             RankingService rankingService,
+                             AchievementService achievementService,
                              AthleteAchievementsService athleteAchievementsService) {
         super(service);
         this.overallAthletesService = overallAthletesService;
         this.athleteRankingsService = athleteRankingsService;
+        this.rankingService = rankingService;
         this.athleteAchievementsService = athleteAchievementsService;
+        this.achievementService = achievementService;
     }
 
     @GetMapping("/{athleteId}/rankings")
-    public Flux<AthleteRankings> getAllRankingsByAthleteId(@PathVariable Long athleteId) {
-        return athleteRankingsService.findAllRankingsByAthleteId(athleteId);
+    public Flux<Ranking> getAllRankingsByAthleteId(@PathVariable Long athleteId) {
+        return athleteRankingsService
+                .findAllRankingsByAthleteId(athleteId)
+                .map(AthleteRankings::getRankingId)
+                .collectList()
+                .flatMapMany(this.rankingService::getAll);
     }
 
 
     @GetMapping("/{athleteId}/achievements")
-    public Flux<AthleteAchievements> getAllAchievementsByAthleteId(@PathVariable Long athleteId) {
-        return athleteAchievementsService.findAllAchievementsByAthleteId(athleteId);
+    public Flux<Achievement> getAllAchievementsByAthleteId(@PathVariable Long athleteId) {
+        return athleteAchievementsService.
+                findAllAchievementsByAthleteId(athleteId)
+                .map(AthleteAchievements::getAchievementId)
+                .collectList()
+                .flatMapMany(this.achievementService::getAll);
     }
 
     @GetMapping("/{athleteId}/overalls")
